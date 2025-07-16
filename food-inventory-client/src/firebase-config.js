@@ -1,14 +1,13 @@
-// Import the functions you need from the SDKs you need
+// Import what you need from Firebase SDK
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Your Firebase config object
 const firebaseConfig = {
   apiKey: "AIzaSyCgUBuLxWDXySSQY9mzGa1kwZJYDx80R2Q",
   authDomain: "food-inventory-a7516.firebaseapp.com",
+  databaseURL: "https://food-inventory-a7516-default-rtdb.firebaseio.com",
   projectId: "food-inventory-a7516",
   storageBucket: "food-inventory-a7516.firebasestorage.app",
   messagingSenderId: "646563023531",
@@ -16,8 +15,9 @@ const firebaseConfig = {
   measurementId: "G-880R0ZY0L7"
 };
 
-// Initialize Firebase
+// Initialize Firebase app
 const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 const analytics = getAnalytics(app);
 
-export { db, ref, push, set, onValue, remove };
+export { db };

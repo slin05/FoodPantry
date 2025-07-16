@@ -1,4 +1,5 @@
-import { db, ref, push, set, onValue, remove } from './firebase-config.js';
+import { db } from './firebase-config.js';
+import { ref, push, set, onValue, remove } from "firebase/database";
 
 const inventoryList = document.getElementById('inventoryList');
 const addForm = document.getElementById('addForm');
