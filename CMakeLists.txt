@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         login.h login.cpp login.ui
         databasehandler.h databasehandler.cpp
         databasehandler.h databasehandler.cpp
+        edititemdialog.h edititemdialog.cpp edititemdialog.ui
 
 
     )
