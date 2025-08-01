@@ -944,209 +944,219 @@ const App = () => {
     );
   });
 
-  const AddProductModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-[600px] max-h-[90vh] overflow-y-auto shadow-xl">
-        <div className="border-b border-gray-200 pb-4 mb-6">
-          <div className="flex items-center">
-            <Check className="h-5 w-5 mr-2 text-blue-600" />
-            <h2 className="text-lg font-semibold text-gray-900">Add New Product</h2>
-          </div>
-        </div>
+  const AddProductModal = React.memo(() => {
+    const [localProductData, setLocalProductData] = useState(newProductData);
+    
+    useEffect(() => {
+      setLocalProductData(newProductData);
+    }, [newProductData]);
 
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
-            <input 
-              type="text" 
-              placeholder="Saltine Crackers" 
-              value={newProductData.name}
-              onChange={(e) => setNewProductData({...newProductData, name: e.target.value})}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
-            />
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-              <select 
-                value={newProductData.category}
-                onChange={(e) => setNewProductData({...newProductData, category: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option>Grain product</option>
-                <option>Canned Goods</option>
-                <option>Condiments/Sauce</option>
-                <option>Dry Cereal</option>
-              </select>
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="bg-white rounded-lg p-6 w-[600px] max-h-[90vh] overflow-y-auto shadow-xl">
+          <div className="border-b border-gray-200 pb-4 mb-6">
+            <div className="flex items-center">
+              <Check className="h-5 w-5 mr-2 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-900">Add New Product</h2>
             </div>
+          </div>
+
+          <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">On Hand</label>
-              <div className="flex">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+              <input 
+                type="text" 
+                placeholder="Saltine Crackers" 
+                value={localProductData.name}
+                onChange={(e) => setLocalProductData({...localProductData, name: e.target.value})}
+                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+              />
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                <select 
+                  value={localProductData.category}
+                  onChange={(e) => setLocalProductData({...localProductData, category: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option>Grain product</option>
+                  <option>Canned Goods</option>
+                  <option>Condiments/Sauce</option>
+                  <option>Dry Cereal</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">On Hand</label>
+                <div className="flex">
+                  <input 
+                    type="number" 
+                    value={localProductData.onHand}
+                    onChange={(e) => setLocalProductData({...localProductData, onHand: parseInt(e.target.value) || 0})}
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                  />
+                  <button className="bg-blue-600 text-white px-3 rounded-r hover:bg-blue-700">+</button>
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Stock Minimum</label>
+                <select 
+                  value={localProductData.stockMin}
+                  onChange={(e) => setLocalProductData({...localProductData, stockMin: parseInt(e.target.value)})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value={15}>15</option>
+                  <option value={10}>10</option>
+                  <option value={5}>5</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Purchase Limit</label>
+                <select 
+                  value={localProductData.purchaseLimit}
+                  onChange={(e) => setLocalProductData({...localProductData, purchaseLimit: parseInt(e.target.value)})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value={3}>3</option>
+                  <option value={2}>2</option>
+                  <option value={1}>1</option>
+                </select>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Entry Date</label>
+                <input 
+                  type="date" 
+                  value={localProductData.entryDate}
+                  onChange={(e) => setLocalProductData({...localProductData, entryDate: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Brand (optional)</label>
+                <input 
+                  type="text" 
+                  placeholder="Generic" 
+                  value={localProductData.brand}
+                  onChange={(e) => setLocalProductData({...localProductData, brand: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Serving per Unit</label>
                 <input 
                   type="number" 
-                  value={newProductData.onHand}
-                  onChange={(e) => setNewProductData({...newProductData, onHand: parseInt(e.target.value) || 0})}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                  value={localProductData.servingPerUnit}
+                  onChange={(e) => setLocalProductData({...localProductData, servingPerUnit: parseInt(e.target.value) || 0})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
                 />
-                <button className="bg-blue-600 text-white px-3 rounded-r hover:bg-blue-700">+</button>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Storage Type</label>
+                <input 
+                  type="text" 
+                  placeholder="Shelf-stable" 
+                  value={localProductData.storageType}
+                  onChange={(e) => setLocalProductData({...localProductData, storageType: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                />
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Donor Name or Vendor (Optional)</label>
+                <input 
+                  type="text" 
+                  placeholder="N/A" 
+                  value={localProductData.donorVendor}
+                  onChange={(e) => setLocalProductData({...localProductData, donorVendor: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Donated or Purchased</label>
+                <select 
+                  value={localProductData.donatedOrPurchased}
+                  onChange={(e) => setLocalProductData({...localProductData, donatedOrPurchased: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option>Donated</option>
+                  <option>Purchased</option>
+                </select>
               </div>
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Stock Minimum</label>
-              <select 
-                value={newProductData.stockMin}
-                onChange={(e) => setNewProductData({...newProductData, stockMin: parseInt(e.target.value)})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value={15}>15</option>
-                <option value={10}>10</option>
-                <option value={5}>5</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Purchase Limit</label>
-              <select 
-                value={newProductData.purchaseLimit}
-                onChange={(e) => setNewProductData({...newProductData, purchaseLimit: parseInt(e.target.value)})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value={3}>3</option>
-                <option value={2}>2</option>
-                <option value={1}>1</option>
-              </select>
-            </div>
+          <div className="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
+            <button
+              onClick={() => {
+                const resetData = {
+                  name: '',
+                  category: 'Grain product',
+                  onHand: 25,
+                  stockMin: 15,
+                  purchaseLimit: 3,
+                  entryDate: new Date().toISOString().split('T')[0],
+                  brand: '',
+                  servingPerUnit: 5,
+                  storageType: 'Shelf-stable',
+                  donorVendor: '',
+                  donatedOrPurchased: 'Donated'
+                };
+                setNewProductData(resetData);
+                setShowAddProductModal(false);
+              }}
+              className="px-6 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              onClick={() => {
+                const newProductRef = push(ref(db, 'inventory'));
+                set(newProductRef, {
+                  ...localProductData,
+                  onHand: Number(localProductData.onHand),
+                  stockMin: Number(localProductData.stockMin),
+                  purchaseLimit: Number(localProductData.purchaseLimit),
+                  servingPerUnit: Number(localProductData.servingPerUnit),
+                  image: '📦',
+                  createdAt: new Date().toISOString()
+                });
+                const resetData = {
+                  name: '',
+                  category: 'Grain product',
+                  onHand: 25,
+                  stockMin: 15,
+                  purchaseLimit: 3,
+                  entryDate: new Date().toISOString().split('T')[0],
+                  brand: '',
+                  servingPerUnit: 5,
+                  storageType: 'Shelf-stable',
+                  donorVendor: '',
+                  donatedOrPurchased: 'Donated'
+                };
+                setNewProductData(resetData);
+                setShowAddProductModal(false);
+              }}
+              className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            >
+              Save Product
+            </button>
           </div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Entry Date</label>
-              <input 
-                type="date" 
-                value={newProductData.entryDate}
-                onChange={(e) => setNewProductData({...newProductData, entryDate: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Brand (optional)</label>
-              <input 
-                type="text" 
-                placeholder="Generic" 
-                value={newProductData.brand}
-                onChange={(e) => setNewProductData({...newProductData, brand: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              />
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Serving per Unit</label>
-              <input 
-                type="number" 
-                value={newProductData.servingPerUnit}
-                onChange={(e) => setNewProductData({...newProductData, servingPerUnit: parseInt(e.target.value) || 0})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Storage Type</label>
-              <input 
-                type="text" 
-                placeholder="Shelf-stable" 
-                value={newProductData.storageType}
-                onChange={(e) => setNewProductData({...newProductData, storageType: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              />
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Donor Name or Vendor (Optional)</label>
-              <input 
-                type="text" 
-                placeholder="N/A" 
-                value={newProductData.donorVendor}
-                onChange={(e) => setNewProductData({...newProductData, donorVendor: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Donated or Purchased</label>
-              <select 
-                value={newProductData.donatedOrPurchased}
-                onChange={(e) => setNewProductData({...newProductData, donatedOrPurchased: e.target.value})}
-                className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option>Donated</option>
-                <option>Purchased</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        
-        <div className="flex justify-end space-x-4 mt-8 pt-6 border-t border-gray-200">
-          <button
-            onClick={() => {
-              setNewProductData({
-                name: '',
-                category: 'Grain product',
-                onHand: 25,
-                stockMin: 15,
-                purchaseLimit: 3,
-                entryDate: new Date().toISOString().split('T')[0],
-                brand: '',
-                servingPerUnit: 5,
-                storageType: 'Shelf-stable',
-                donorVendor: '',
-                donatedOrPurchased: 'Donated'
-              });
-              setShowAddProductModal(false);
-            }}
-            className="px-6 py-2 text-gray-600 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
-          >
-            Cancel
-          </button>
-          <button 
-            onClick={() => {
-              const newProductRef = push(ref(db, 'inventory'));
-              set(newProductRef, {
-                ...newProductData,
-                onHand: Number(newProductData.onHand),
-                stockMin: Number(newProductData.stockMin),
-                purchaseLimit: Number(newProductData.purchaseLimit),
-                servingPerUnit: Number(newProductData.servingPerUnit),
-                image: '📦',
-                createdAt: new Date().toISOString()
-              });
-              setNewProductData({
-                name: '',
-                category: 'Grain product',
-                onHand: 25,
-                stockMin: 15,
-                purchaseLimit: 3,
-                entryDate: new Date().toISOString().split('T')[0],
-                brand: '',
-                servingPerUnit: 5,
-                storageType: 'Shelf-stable',
-                donorVendor: '',
-                donatedOrPurchased: 'Donated'
-              });
-              setShowAddProductModal(false);
-            }}
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-          >
-            Save Product
-          </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  });
 
   if (!isLoggedIn) {
     return showLoginScreen ? 

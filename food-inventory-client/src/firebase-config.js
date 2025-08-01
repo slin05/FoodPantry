@@ -6,14 +6,14 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your Firebase config object
 const firebaseConfig = {
-  apiKey: "AIzaSyCgUBuLxWDXySSQY9mzGa1kwZJYDx80R2Q",
-  authDomain: "food-inventory-a7516.firebaseapp.com",
-  databaseURL: "https://food-inventory-a7516-default-rtdb.firebaseio.com",
-  projectId: "food-inventory-a7516",
-  storageBucket: "food-inventory-a7516.firebasestorage.app",
-  messagingSenderId: "646563023531",
-  appId: "1:646563023531:web:113d92cbcc2415669a45ee",
-  measurementId: "G-880R0ZY0L7"
+  apiKey: "AIzaSyA_NDLyRVNuQz7Zvo-68KQJp2ytF0aHm48",
+  authDomain: "foodpantry-38846.firebaseapp.com",
+  databaseURL: "https://foodpantry-38846-default-rtdb.firebaseio.com",
+  projectId: "foodpantry-38846",
+  storageBucket: "foodpantry-38846.firebasestorage.app",
+  messagingSenderId: "91718249442",
+  appId: "1:91718249442:web:c8827c43eeb3bfd83e27bb",
+  measurementId: "G-7LEM9C9MSN"
 };
 
 // Initialize Firebase app
