@@ -1,6 +1,7 @@
 // Import what you need from Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 // Your Firebase config object
@@ -18,6 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+const auth = getAuth(app);
 const analytics = getAnalytics(app);
 
-export { db };
+export { db, auth };
