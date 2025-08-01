@@ -61,7 +61,6 @@ public:
     QLabel *label_11;
     QWidget *tab_3;
     QTableWidget *tableWidget_2;
-    QWidget *tab_4;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -207,9 +206,6 @@ public:
         tableWidget_2->setRowCount(1);
         tableWidget_2->setColumnCount(6);
         tabWidget->addTab(tab_3, QString());
-        tab_4 = new QWidget();
-        tab_4->setObjectName("tab_4");
-        tabWidget->addTab(tab_4, QString());
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -276,7 +272,6 @@ public:
         QTableWidgetItem *___qtablewidgetitem11 = tableWidget_2->horizontalHeaderItem(5);
         ___qtablewidgetitem11->setText(QCoreApplication::translate("MainWindow", "Purchase Limit", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "Remove", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("MainWindow", "Scanner", nullptr));
     } // retranslateUi
 
 };

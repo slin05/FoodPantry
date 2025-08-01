@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    refreshTable();
 }
 
 MainWindow::~MainWindow()
@@ -16,6 +17,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_SaveProductButton_clicked()
 {
+    QVariantMap newProduct;
+    newProduct["name"] = "Peach";
+    newProduct["quantity"] = "40";
 
+    dbhandler.postToServerInventory(newProduct);
 }
 
+
+void MainWindow::refreshTable()
+{
+    QJsonObject fireBaseData = dbhandler.pullFromInventory();
+
+    if (fireBaseData.contains("products"))
+    {
+        qDebug() << "HI";
+    } else
+    {
+        qDebug() << "oops";
+    }
+}

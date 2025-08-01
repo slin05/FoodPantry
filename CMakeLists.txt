@@ -24,7 +24,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(FoodPantry
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        product.h product.cpp
+
         images.qrc
         login.h login.cpp login.ui
         databasehandler.h databasehandler.cpp

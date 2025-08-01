@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QJsonObject>
 
 class databasehandler : public QObject
 {
@@ -11,6 +12,8 @@ class databasehandler : public QObject
 public:
     explicit databasehandler(QObject *parent = nullptr);
     ~databasehandler();
+    void postToServerInventory(QVariantMap product);
+    QJsonObject pullFromInventory();
 
 public slots:
     void networkReplyReadyRead();
@@ -24,7 +27,6 @@ private:
     QString inventoryDatabase;
     QString loginDatabase;
 
-    void postToServerInventory(QVariantMap product);
     void getFromServerInventory();
 };
 
