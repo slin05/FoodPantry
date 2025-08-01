@@ -31,8 +31,8 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QTabWidget *tabWidget;
-    QWidget *tab;
-    QTableWidget *tableWidget;
+    QWidget *ViewTab;
+    QTableWidget *ViewTable;
     QLineEdit *lineEdit;
     QPushButton *pushButton;
     QWidget *tab_2;
@@ -76,37 +76,35 @@ public:
         tabWidget->setGeometry(QRect(0, 0, 1191, 641));
         tabWidget->setMaximumSize(QSize(1191, 641));
         tabWidget->setTabPosition(QTabWidget::TabPosition::West);
-        tab = new QWidget();
-        tab->setObjectName("tab");
-        tableWidget = new QTableWidget(tab);
-        if (tableWidget->columnCount() < 6)
-            tableWidget->setColumnCount(6);
+        ViewTab = new QWidget();
+        ViewTab->setObjectName("ViewTab");
+        ViewTable = new QTableWidget(ViewTab);
+        if (ViewTable->columnCount() < 5)
+            ViewTable->setColumnCount(5);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        ViewTable->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        ViewTable->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        ViewTable->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        ViewTable->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
-        if (tableWidget->rowCount() < 1)
-            tableWidget->setRowCount(1);
-        tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(0, 30, 761, 521));
-        tableWidget->setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);
-        tableWidget->setRowCount(1);
-        tableWidget->setColumnCount(6);
-        lineEdit = new QLineEdit(tab);
+        ViewTable->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        if (ViewTable->rowCount() < 1)
+            ViewTable->setRowCount(1);
+        ViewTable->setObjectName("ViewTable");
+        ViewTable->setGeometry(QRect(0, 30, 761, 521));
+        ViewTable->setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);
+        ViewTable->setRowCount(1);
+        ViewTable->setColumnCount(5);
+        lineEdit = new QLineEdit(ViewTab);
         lineEdit->setObjectName("lineEdit");
         lineEdit->setGeometry(QRect(0, 0, 671, 28));
-        pushButton = new QPushButton(tab);
+        pushButton = new QPushButton(ViewTab);
         pushButton->setObjectName("pushButton");
         pushButton->setGeometry(QRect(680, 0, 83, 29));
-        tabWidget->addTab(tab, QString());
+        tabWidget->addTab(ViewTab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName("tab_2");
         ProductNameLine = new QLineEdit(tab_2);
@@ -186,18 +184,18 @@ public:
         tableWidget_2 = new QTableWidget(tab_3);
         if (tableWidget_2->columnCount() < 6)
             tableWidget_2->setColumnCount(6);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        tableWidget_2->setHorizontalHeaderItem(0, __qtablewidgetitem5);
         QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
-        tableWidget_2->setHorizontalHeaderItem(0, __qtablewidgetitem6);
+        tableWidget_2->setHorizontalHeaderItem(1, __qtablewidgetitem6);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        tableWidget_2->setHorizontalHeaderItem(1, __qtablewidgetitem7);
+        tableWidget_2->setHorizontalHeaderItem(2, __qtablewidgetitem7);
         QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
-        tableWidget_2->setHorizontalHeaderItem(2, __qtablewidgetitem8);
+        tableWidget_2->setHorizontalHeaderItem(3, __qtablewidgetitem8);
         QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        tableWidget_2->setHorizontalHeaderItem(3, __qtablewidgetitem9);
+        tableWidget_2->setHorizontalHeaderItem(4, __qtablewidgetitem9);
         QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        tableWidget_2->setHorizontalHeaderItem(4, __qtablewidgetitem10);
-        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
-        tableWidget_2->setHorizontalHeaderItem(5, __qtablewidgetitem11);
+        tableWidget_2->setHorizontalHeaderItem(5, __qtablewidgetitem10);
         if (tableWidget_2->rowCount() < 1)
             tableWidget_2->setRowCount(1);
         tableWidget_2->setObjectName("tableWidget_2");
@@ -226,20 +224,18 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QCoreApplication::translate("MainWindow", "Item No", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QCoreApplication::translate("MainWindow", "Image", nullptr));
-        QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QCoreApplication::translate("MainWindow", "Product Name", nullptr));
-        QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QCoreApplication::translate("MainWindow", "On Hand", nullptr));
-        QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QCoreApplication::translate("MainWindow", "Stock Min", nullptr));
-        QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QCoreApplication::translate("MainWindow", "Purchase Limit", nullptr));
+        QTableWidgetItem *___qtablewidgetitem = ViewTable->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QCoreApplication::translate("MainWindow", "Product Name", nullptr));
+        QTableWidgetItem *___qtablewidgetitem1 = ViewTable->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QCoreApplication::translate("MainWindow", "On Hand", nullptr));
+        QTableWidgetItem *___qtablewidgetitem2 = ViewTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QCoreApplication::translate("MainWindow", "Image", nullptr));
+        QTableWidgetItem *___qtablewidgetitem3 = ViewTable->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QCoreApplication::translate("MainWindow", "Stock Min", nullptr));
+        QTableWidgetItem *___qtablewidgetitem4 = ViewTable->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QCoreApplication::translate("MainWindow", "Purchase Limit", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "View", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(ViewTab), QCoreApplication::translate("MainWindow", "View", nullptr));
         ProductNameLine->setText(QString());
         BrandLine->setText(QString());
         ServingLine->setText(QString());
@@ -259,18 +255,18 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Donor or Vendor (optional)", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "Donated or Purchased", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "Add", nullptr));
-        QTableWidgetItem *___qtablewidgetitem6 = tableWidget_2->horizontalHeaderItem(0);
-        ___qtablewidgetitem6->setText(QCoreApplication::translate("MainWindow", "Item No", nullptr));
-        QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->horizontalHeaderItem(1);
-        ___qtablewidgetitem7->setText(QCoreApplication::translate("MainWindow", "Image", nullptr));
-        QTableWidgetItem *___qtablewidgetitem8 = tableWidget_2->horizontalHeaderItem(2);
-        ___qtablewidgetitem8->setText(QCoreApplication::translate("MainWindow", "Product Name", nullptr));
-        QTableWidgetItem *___qtablewidgetitem9 = tableWidget_2->horizontalHeaderItem(3);
-        ___qtablewidgetitem9->setText(QCoreApplication::translate("MainWindow", "On Hand", nullptr));
-        QTableWidgetItem *___qtablewidgetitem10 = tableWidget_2->horizontalHeaderItem(4);
-        ___qtablewidgetitem10->setText(QCoreApplication::translate("MainWindow", "Stock Min", nullptr));
-        QTableWidgetItem *___qtablewidgetitem11 = tableWidget_2->horizontalHeaderItem(5);
-        ___qtablewidgetitem11->setText(QCoreApplication::translate("MainWindow", "Purchase Limit", nullptr));
+        QTableWidgetItem *___qtablewidgetitem5 = tableWidget_2->horizontalHeaderItem(0);
+        ___qtablewidgetitem5->setText(QCoreApplication::translate("MainWindow", "Item No", nullptr));
+        QTableWidgetItem *___qtablewidgetitem6 = tableWidget_2->horizontalHeaderItem(1);
+        ___qtablewidgetitem6->setText(QCoreApplication::translate("MainWindow", "Image", nullptr));
+        QTableWidgetItem *___qtablewidgetitem7 = tableWidget_2->horizontalHeaderItem(2);
+        ___qtablewidgetitem7->setText(QCoreApplication::translate("MainWindow", "Product Name", nullptr));
+        QTableWidgetItem *___qtablewidgetitem8 = tableWidget_2->horizontalHeaderItem(3);
+        ___qtablewidgetitem8->setText(QCoreApplication::translate("MainWindow", "On Hand", nullptr));
+        QTableWidgetItem *___qtablewidgetitem9 = tableWidget_2->horizontalHeaderItem(4);
+        ___qtablewidgetitem9->setText(QCoreApplication::translate("MainWindow", "Stock Min", nullptr));
+        QTableWidgetItem *___qtablewidgetitem10 = tableWidget_2->horizontalHeaderItem(5);
+        ___qtablewidgetitem10->setText(QCoreApplication::translate("MainWindow", "Purchase Limit", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "Remove", nullptr));
     } // retranslateUi
 

@@ -35,11 +35,11 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="ViewTab">
      <attribute name="title">
       <string>View</string>
      </attribute>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="ViewTable">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -55,19 +55,9 @@
        <number>1</number>
       </property>
       <property name="columnCount">
-       <number>6</number>
+       <number>5</number>
       </property>
       <row/>
-      <column>
-       <property name="text">
-        <string>Item No</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Image</string>
-       </property>
-      </column>
       <column>
        <property name="text">
         <string>Product Name</string>
@@ -76,6 +66,11 @@
       <column>
        <property name="text">
         <string>On Hand</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Image</string>
        </property>
       </column>
       <column>

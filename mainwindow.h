@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QJsonArray>
 #include "databasehandler.h"
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +23,8 @@ public:
 private slots:
 
     void on_SaveProductButton_clicked();
+
+    void on_tabWidget_tabBarClicked(int index);
 
 private:
     Ui::MainWindow *ui;

@@ -18,22 +18,51 @@ MainWindow::~MainWindow()
 void MainWindow::on_SaveProductButton_clicked()
 {
     QVariantMap newProduct;
-    newProduct["name"] = "Peach";
-    newProduct["quantity"] = "40";
+    newProduct["name"] = ui->ProductNameLine->text();
+    newProduct["quantity"] = ui->OnHandLine->text().toInt();
 
     dbhandler.postToServerInventory(newProduct);
 }
 
-
+// this is held together by duct tape and glue.
 void MainWindow::refreshTable()
 {
-    QJsonObject fireBaseData = dbhandler.pullFromInventory();
+    QJsonObject fireBaseData = dbhandler.getJson();
+    QJsonArray fireBaseArray;
 
-    if (fireBaseData.contains("products"))
+    //takes every product and puts it into an array
+    for(const QString& key : fireBaseData.keys())
     {
-        qDebug() << "HI";
-    } else
+        fireBaseArray.append(fireBaseData.value(key));
+    }
+
+    QTableWidget* tableWidget = ui->ViewTable;
+
+    ui->ViewTable->setRowCount(fireBaseArray.size());
+
+    // takes every product in the array and puts the data into a new row of the table.
+    for (int row = 0; row < fireBaseArray.size(); ++row)
     {
-        qDebug() << "oops";
+        QJsonValue productValue = fireBaseArray[row];
+
+        if (productValue.isObject())
+        {
+            QJsonObject productObject = productValue.toObject();
+
+            QString name = productObject["name"].toString();
+            int onHand = productObject["quantity"].toInt();
+
+            tableWidget->setItem(row, 0, new QTableWidgetItem(name));
+            tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(onHand)));
+        }
+    }
+
+}
+
+void MainWindow::on_tabWidget_tabBarClicked(int index)
+{
+    if (index == 0){
+        refreshTable();
     }
 }
+

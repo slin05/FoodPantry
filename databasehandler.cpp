@@ -7,6 +7,7 @@
 databasehandler::databasehandler(QObject *parent)
     : QObject{parent}
 {
+    pullInventory();
 }
 
 
@@ -15,11 +16,31 @@ databasehandler::~databasehandler()
     m_networkManager->deleteLater();
 }
 
+void databasehandler::pullInventory()
+{
+    m_networkManager = new QNetworkAccessManager(this);
+    m_networkReply = m_networkManager->get(QNetworkRequest( QUrl("https://foodpantry-38846-default-rtdb.firebaseio.com/products.json")));
+    connect(m_networkReply, &QNetworkReply::readyRead, this, &databasehandler::updateJson);
+}
+
+void databasehandler::updateJson()
+{
+    QByteArray responseData = m_networkReply->readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(responseData);
+    firebase = doc.object();
+}
+
+
+QJsonObject databasehandler::getJson()
+{
+    pullInventory();
+    return firebase;
+}
+
 void databasehandler::networkReplyReadyRead()
 {
     qDebug() << m_networkReply->readAll();
 }
-
 
 void databasehandler::postToServerInventory(QVariantMap product)
 {
@@ -34,15 +55,3 @@ void databasehandler::postToServerInventory(QVariantMap product)
     m_networkManager->post(newProductRequest, jsonDoc.toJson());
 }
 
-
-QJsonObject databasehandler::pullFromInventory()
-{
-    m_networkManager = new QNetworkAccessManager(this);
-    m_networkReply = m_networkManager->get(QNetworkRequest( QUrl("https://foodpantry-38846-default-rtdb.firebaseio.com/")));
-    qDebug() << m_networkReply->readAll();
-
-    QByteArray productData = m_networkReply->readAll();
-    QJsonDocument productDoc = QJsonDocument::fromJson(productData);
-    QJsonObject objects = productDoc.object();
-    return objects;
-}

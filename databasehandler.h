@@ -13,10 +13,12 @@ public:
     explicit databasehandler(QObject *parent = nullptr);
     ~databasehandler();
     void postToServerInventory(QVariantMap product);
-    QJsonObject pullFromInventory();
+    void pullInventory();
+    QJsonObject getJson();
 
 public slots:
     void networkReplyReadyRead();
+    void updateJson();
 
 signals:
 
@@ -26,6 +28,8 @@ private:
 
     QString inventoryDatabase;
     QString loginDatabase;
+
+    QJsonObject firebase;
 
     void getFromServerInventory();
 };
