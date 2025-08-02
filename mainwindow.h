@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QJsonArray>
+#include <QCheckBox>
 #include "databasehandler.h"
 
 QT_BEGIN_NAMESPACE

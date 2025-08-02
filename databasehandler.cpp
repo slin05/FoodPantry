@@ -19,7 +19,7 @@ databasehandler::~databasehandler()
 void databasehandler::pullInventory()
 {
     m_networkManager = new QNetworkAccessManager(this);
-    m_networkReply = m_networkManager->get(QNetworkRequest( QUrl("https://foodpantry-38846-default-rtdb.firebaseio.com/products.json")));
+    m_networkReply = m_networkManager->get(QNetworkRequest( QUrl("https://foodpantry-38846-default-rtdb.firebaseio.com/inventory.json")));
     connect(m_networkReply, &QNetworkReply::readyRead, this, &databasehandler::updateJson);
 }
 
@@ -48,8 +48,7 @@ void databasehandler::postToServerInventory(QVariantMap product)
 
     QJsonDocument jsonDoc = QJsonDocument::fromVariant(product);
 
-
-    QNetworkRequest newProductRequest(QUrl("https://foodpantry-38846-default-rtdb.firebaseio.com/products.json"));
+    QNetworkRequest newProductRequest(QUrl("https://addinventory-w27sp26ibq-uc.a.run.app"));
 
     newProductRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
     m_networkManager->post(newProductRequest, jsonDoc.toJson());
