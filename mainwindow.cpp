@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    dbhandler.setAPIKey("AIzaSyA_NDLyRVNuQz7Zvo-68KQJp2ytF0aHm48");
     refreshTable();
 }
 
