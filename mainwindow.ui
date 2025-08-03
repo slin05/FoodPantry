@@ -473,17 +473,17 @@
       <row/>
       <column>
        <property name="text">
+        <string>ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Product Name</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>On Hand</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Image</string>
        </property>
       </column>
       <column>

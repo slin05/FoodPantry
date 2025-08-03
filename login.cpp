@@ -7,6 +7,8 @@ login::login(QWidget *parent)
     , ui(new Ui::login)
 {
     ui->setupUi(this);
+    loginhandler = &w.dbhandler;
+    r.sethandler(loginhandler);
 }
 
 login::~login()

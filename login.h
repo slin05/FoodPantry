@@ -26,6 +26,7 @@ private:
     Ui::login *ui;
     MainWindow w;
     userregistration r;
+    databasehandler* loginhandler;
 };
 
 #endif // LOGIN_H

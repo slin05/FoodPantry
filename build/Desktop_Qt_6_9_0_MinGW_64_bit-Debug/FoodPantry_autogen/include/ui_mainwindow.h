@@ -284,11 +284,11 @@ public:
         label_11->setText(QCoreApplication::translate("MainWindow", "Donated or Purchased", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(AddTab), QCoreApplication::translate("MainWindow", "Add", nullptr));
         QTableWidgetItem *___qtablewidgetitem5 = RemoveTable->horizontalHeaderItem(0);
-        ___qtablewidgetitem5->setText(QCoreApplication::translate("MainWindow", "Product Name", nullptr));
+        ___qtablewidgetitem5->setText(QCoreApplication::translate("MainWindow", "ID", nullptr));
         QTableWidgetItem *___qtablewidgetitem6 = RemoveTable->horizontalHeaderItem(1);
-        ___qtablewidgetitem6->setText(QCoreApplication::translate("MainWindow", "On Hand", nullptr));
+        ___qtablewidgetitem6->setText(QCoreApplication::translate("MainWindow", "Product Name", nullptr));
         QTableWidgetItem *___qtablewidgetitem7 = RemoveTable->horizontalHeaderItem(2);
-        ___qtablewidgetitem7->setText(QCoreApplication::translate("MainWindow", "Image", nullptr));
+        ___qtablewidgetitem7->setText(QCoreApplication::translate("MainWindow", "On Hand", nullptr));
         QTableWidgetItem *___qtablewidgetitem8 = RemoveTable->horizontalHeaderItem(3);
         ___qtablewidgetitem8->setText(QCoreApplication::translate("MainWindow", "Stock Min", nullptr));
         QTableWidgetItem *___qtablewidgetitem9 = RemoveTable->horizontalHeaderItem(4);

@@ -20,6 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void refreshTable();
+    databasehandler dbhandler;
 
 private slots:
 
@@ -31,6 +32,5 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    databasehandler dbhandler;
 };
 #endif // MAINWINDOW_H

@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    dbhandler.setAPIKey("AIzaSyA_NDLyRVNuQz7Zvo-68KQJp2ytF0aHm48");
     refreshTable();
 }
 
@@ -17,11 +18,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_SaveProductButton_clicked()
 {
+
+    QString productEmoticon = "📦";
     QVariantMap newProduct;
-    newProduct["itemId"] = ui->ProductNameLine->text();
+    newProduct["id"] = ui->ProductNameLine->text();
     newProduct["name"] = ui->ProductNameLine->text();
-    newProduct["quantity"] = ui->OnHandLine->value();
+    newProduct["onHand"] = ui->OnHandLine->value();
     newProduct["brand"] = ui->BrandLine->text();
+    newProduct["category"] = ui->CategoryBox->currentText();
+    newProduct["entryDate"] = ui->EntryDateBox->date();
+    newProduct["image"] = productEmoticon;
+    newProduct["servingPerUnit"] = ui->ServingLine->text();
+    newProduct["stockMin"] = ui->StockMinBox->currentData();
+    newProduct["storageType"] = ui->StorageTypeLine->text();
 
     dbhandler.postToServerInventory(newProduct);
     ui->tabWidget->setCurrentIndex(0);
@@ -32,11 +41,13 @@ void MainWindow::refreshTable()
 {
     QJsonObject fireBaseData = dbhandler.getJson();
     QJsonArray fireBaseArray;
+    QJsonArray keyArray;
 
     //takes every product and puts it into an array
     for(const QString& key : fireBaseData.keys())
     {
         fireBaseArray.append(fireBaseData.value(key));
+        keyArray.append(key);
     }
 
     QTableWidget* tableWidget = ui->ViewTable;
@@ -54,6 +65,7 @@ void MainWindow::refreshTable()
         {
             QJsonObject productObject = productValue.toObject();
 
+            QString id = keyArray[row].toString();
             QString name = productObject["name"].toString();
             int onHand = productObject["onHand"].toInt();
             QString imageData = productObject["image"].toString();
@@ -67,8 +79,9 @@ void MainWindow::refreshTable()
             tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(stockMin)));
             tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(purchaseLimit)));
 
-            tableWidget2->setItem(row, 0, new QTableWidgetItem(name));
-            tableWidget2->setItem(row, 1, new QTableWidgetItem(QString::number(onHand)));
+            tableWidget2->setItem(row, 0, new QTableWidgetItem(id));
+            tableWidget2->setItem(row, 1, new QTableWidgetItem(name));
+            tableWidget2->setItem(row, 2, new QTableWidgetItem(QString::number(onHand)));
             tableWidget2->setCellWidget(row, 5, new QCheckBox);
         }
     }

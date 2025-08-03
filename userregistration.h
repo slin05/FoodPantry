@@ -14,10 +14,16 @@ class userregistration : public QWidget
 
 public:
     explicit userregistration(QWidget *parent = nullptr);
+    void sethandler(databasehandler* address);
     ~userregistration();
+
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::userregistration *ui;
+    databasehandler* registerhandler;
 };
 
 #endif // USERREGISTRATION_H
