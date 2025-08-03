@@ -19,6 +19,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
@@ -41,7 +42,6 @@ public:
     QLineEdit *ServingLine;
     QPushButton *SaveProductButton;
     QComboBox *CategoryBox;
-    QLineEdit *OnHandLine;
     QComboBox *StockMinBox;
     QComboBox *PurchaseLimitBox;
     QDateEdit *EntryDateBox;
@@ -59,8 +59,10 @@ public:
     QLabel *label_10;
     QLabel *label;
     QLabel *label_11;
+    QSpinBox *OnHandLine;
     QWidget *RemoveTab;
     QTableWidget *RemoveTable;
+    QPushButton *RemoveButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -126,9 +128,6 @@ public:
         CategoryBox->addItem(QString());
         CategoryBox->setObjectName("CategoryBox");
         CategoryBox->setGeometry(QRect(170, 110, 191, 28));
-        OnHandLine = new QLineEdit(AddTab);
-        OnHandLine->setObjectName("OnHandLine");
-        OnHandLine->setGeometry(QRect(370, 110, 201, 28));
         StockMinBox = new QComboBox(AddTab);
         StockMinBox->addItem(QString());
         StockMinBox->addItem(QString());
@@ -188,6 +187,9 @@ public:
         label_11 = new QLabel(AddTab);
         label_11->setObjectName("label_11");
         label_11->setGeometry(QRect(370, 360, 151, 20));
+        OnHandLine = new QSpinBox(AddTab);
+        OnHandLine->setObjectName("OnHandLine");
+        OnHandLine->setGeometry(QRect(370, 110, 201, 29));
         tabWidget->addTab(AddTab, QString());
         RemoveTab = new QWidget();
         RemoveTab->setObjectName("RemoveTab");
@@ -213,6 +215,9 @@ public:
         RemoveTable->setEditTriggers(QAbstractItemView::EditTrigger::NoEditTriggers);
         RemoveTable->setRowCount(1);
         RemoveTable->setColumnCount(6);
+        RemoveButton = new QPushButton(RemoveTab);
+        RemoveButton->setObjectName("RemoveButton");
+        RemoveButton->setGeometry(QRect(620, 440, 131, 61));
         tabWidget->addTab(RemoveTab, QString());
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -225,7 +230,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -288,6 +293,7 @@ public:
         ___qtablewidgetitem8->setText(QCoreApplication::translate("MainWindow", "Stock Min", nullptr));
         QTableWidgetItem *___qtablewidgetitem9 = RemoveTable->horizontalHeaderItem(4);
         ___qtablewidgetitem9->setText(QCoreApplication::translate("MainWindow", "Purchase Limit", nullptr));
+        RemoveButton->setText(QCoreApplication::translate("MainWindow", "Remove Selected", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(RemoveTab), QCoreApplication::translate("MainWindow", "Remove", nullptr));
     } // retranslateUi
 

@@ -20,7 +20,7 @@ void MainWindow::on_SaveProductButton_clicked()
     QVariantMap newProduct;
     newProduct["itemId"] = ui->ProductNameLine->text();
     newProduct["name"] = ui->ProductNameLine->text();
-    newProduct["quantity"] = ui->OnHandLine->text().toInt();
+    newProduct["quantity"] = ui->OnHandLine->value();
     newProduct["brand"] = ui->BrandLine->text();
 
     dbhandler.postToServerInventory(newProduct);
@@ -55,10 +55,17 @@ void MainWindow::refreshTable()
             QJsonObject productObject = productValue.toObject();
 
             QString name = productObject["name"].toString();
-            int onHand = productObject["quantity"].toInt();
+            int onHand = productObject["onHand"].toInt();
+            QString imageData = productObject["image"].toString();
+            int purchaseLimit = productObject["purchaseLimit"].toInt();
+            int stockMin = productObject["stockMin"].toInt();
+
 
             tableWidget->setItem(row, 0, new QTableWidgetItem(name));
             tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(onHand)));
+            tableWidget->setItem(row, 2, new QTableWidgetItem(imageData));
+            tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(stockMin)));
+            tableWidget->setItem(row, 4, new QTableWidgetItem(QString::number(purchaseLimit)));
 
             tableWidget2->setItem(row, 0, new QTableWidgetItem(name));
             tableWidget2->setItem(row, 1, new QTableWidgetItem(QString::number(onHand)));
@@ -71,5 +78,23 @@ void MainWindow::refreshTable()
 void MainWindow::on_tabWidget_tabBarClicked(int index)
 {
     refreshTable();
+}
+
+
+void MainWindow::on_RemoveButton_clicked()
+{
+    QTableWidget* tableWidget = ui->RemoveTable;
+
+    for (int row = 0; row < tableWidget->rowCount(); row++)
+    {
+        QWidget* itemBox = tableWidget->cellWidget(row, 5);
+        QCheckBox *checkbox = qobject_cast<QCheckBox *>(itemBox);
+        if (checkbox->checkState())
+        {
+            QString product = tableWidget->item(row,0)->text();
+            dbhandler.removeFromServerInventory(product);
+        };
+    };
+    ui->tabWidget->setCurrentIndex(0);
 }
 

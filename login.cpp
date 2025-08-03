@@ -29,3 +29,10 @@ void login::on_pushButton_clicked()
     }
 }
 
+
+void login::on_label_2_linkActivated(const QString &link)
+{
+    this->hide();
+    r.show();
+}
+

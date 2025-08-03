@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "mainwindow.h"
+#include "userregistration.h"
 
 namespace Ui {
 class login;
@@ -19,9 +20,12 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_label_2_linkActivated(const QString &link);
+
 private:
     Ui::login *ui;
     MainWindow w;
+    userregistration r;
 };
 
 #endif // LOGIN_H

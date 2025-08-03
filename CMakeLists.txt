@@ -30,6 +30,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         databasehandler.h databasehandler.cpp
         databasehandler.h databasehandler.cpp
         edititemdialog.h edititemdialog.cpp edititemdialog.ui
+        styles.qss
+        userregistration.h userregistration.cpp userregistration.ui
+        stylesheet.qrc
 
 
     )

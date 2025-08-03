@@ -33,7 +33,7 @@
      <enum>QTabWidget::TabPosition::West</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="ViewTab">
      <attribute name="title">
@@ -193,16 +193,6 @@
         <string>Dry Cereal</string>
        </property>
       </item>
-     </widget>
-     <widget class="QLineEdit" name="OnHandLine">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>110</y>
-        <width>201</width>
-        <height>28</height>
-       </rect>
-      </property>
      </widget>
      <widget class="QComboBox" name="StockMinBox">
       <property name="geometry">
@@ -447,6 +437,16 @@
        <string>Donated or Purchased</string>
       </property>
      </widget>
+     <widget class="QSpinBox" name="OnHandLine">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>110</y>
+        <width>201</width>
+        <height>29</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="RemoveTab">
      <attribute name="title">
@@ -501,6 +501,19 @@
         <string/>
        </property>
       </column>
+     </widget>
+     <widget class="QPushButton" name="RemoveButton">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>440</y>
+        <width>131</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove Selected</string>
+      </property>
      </widget>
     </widget>
    </widget>
