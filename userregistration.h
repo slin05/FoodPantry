@@ -17,7 +17,6 @@ public:
     void sethandler(databasehandler* address);
     ~userregistration();
 
-
 private slots:
     void on_pushButton_clicked();
 

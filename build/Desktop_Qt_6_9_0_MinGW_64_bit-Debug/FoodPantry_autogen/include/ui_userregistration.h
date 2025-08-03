@@ -23,7 +23,7 @@ class Ui_userregistration
 public:
     QLineEdit *UsernameEdit;
     QLineEdit *PasswordEdit;
-    QLabel *label;
+    QLabel *registerLabel;
     QPushButton *pushButton;
     QLineEdit *FullNameEdit;
     QLineEdit *ConfirmEdit;
@@ -43,9 +43,10 @@ public:
         PasswordEdit = new QLineEdit(userregistration);
         PasswordEdit->setObjectName("PasswordEdit");
         PasswordEdit->setGeometry(QRect(10, 295, 378, 28));
-        label = new QLabel(userregistration);
-        label->setObjectName("label");
-        label->setGeometry(QRect(10, 20, 378, 163));
+        PasswordEdit->setEchoMode(QLineEdit::EchoMode::Password);
+        registerLabel = new QLabel(userregistration);
+        registerLabel->setObjectName("registerLabel");
+        registerLabel->setGeometry(QRect(10, 20, 378, 163));
         pushButton = new QPushButton(userregistration);
         pushButton->setObjectName("pushButton");
         pushButton->setGeometry(QRect(10, 400, 378, 29));
@@ -55,9 +56,11 @@ public:
         ConfirmEdit = new QLineEdit(userregistration);
         ConfirmEdit->setObjectName("ConfirmEdit");
         ConfirmEdit->setGeometry(QRect(10, 330, 378, 28));
+        ConfirmEdit->setEchoMode(QLineEdit::EchoMode::Password);
         CodeEdit = new QLineEdit(userregistration);
         CodeEdit->setObjectName("CodeEdit");
         CodeEdit->setGeometry(QRect(10, 365, 378, 28));
+        CodeEdit->setEchoMode(QLineEdit::EchoMode::Password);
         label_2 = new QLabel(userregistration);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(10, 436, 378, 162));
@@ -75,7 +78,7 @@ public:
         userregistration->setWindowTitle(QCoreApplication::translate("userregistration", "Form", nullptr));
         UsernameEdit->setPlaceholderText(QCoreApplication::translate("userregistration", "\360\237\221\244Username", nullptr));
         PasswordEdit->setPlaceholderText(QCoreApplication::translate("userregistration", "\360\237\224\222Password", nullptr));
-        label->setText(QCoreApplication::translate("userregistration", "\360\237\223\246Register", nullptr));
+        registerLabel->setText(QCoreApplication::translate("userregistration", "\360\237\223\246Register", nullptr));
         pushButton->setText(QCoreApplication::translate("userregistration", "Create Account", nullptr));
         FullNameEdit->setPlaceholderText(QCoreApplication::translate("userregistration", "\360\237\221\244Full Name", nullptr));
         ConfirmEdit->setPlaceholderText(QCoreApplication::translate("userregistration", "\360\237\224\222Confirm Password", nullptr));

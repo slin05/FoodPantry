@@ -8,6 +8,7 @@ databasehandler::databasehandler(QObject *parent)
     : QObject{parent}
 {
     m_apiKey = "";
+    userSignedIn = false;
     pullInventory();
 }
 
@@ -44,6 +45,20 @@ void databasehandler::signUserUp(const QString &emailAddress, const QString &pas
     performPOST(signUpEndpoint, jsonPayload);
 }
 
+void databasehandler::signUserIn(const QString &emailAddress, const QString &password)
+{
+    QString signInEndpoint = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + m_apiKey;
+
+    QVariantMap variantPayload;
+    variantPayload["email"] = emailAddress;
+    variantPayload["password"] = password;
+    variantPayload["returnSecureToken"] = true;
+
+    QJsonDocument jsonPayload = QJsonDocument::fromVariant(variantPayload);
+
+    performPOST(signInEndpoint, jsonPayload);
+}
+
 void databasehandler::updateJson()
 {
     QByteArray responseData = m_networkReply->readAll();
@@ -60,6 +75,24 @@ void databasehandler::performPOST(const QString &url, const QJsonDocument &paylo
     connect(m_networkReply, &QNetworkReply::readyRead, this, &databasehandler::networkReplyReadyRead);
 }
 
+void databasehandler::parseResponse(const QByteArray &response)
+{
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(response);
+
+    if(jsonDocument.object().contains("error"))
+    {
+        qDebug() << "Error Occured" << response;
+    }
+    else if (jsonDocument.object().contains("kind"))
+    {
+        QString idToken = jsonDocument.object().value("idToken").toString();
+
+        qDebug() << "Contained user ID Token " << idToken;
+        m_idToken = idToken;
+        userSignedIn = true;
+    }
+}
+
 
 QJsonObject databasehandler::getJson()
 {
@@ -69,8 +102,11 @@ QJsonObject databasehandler::getJson()
 
 void databasehandler::networkReplyReadyRead()
 {
-    qDebug() << m_networkReply->readAll();
+
+    QByteArray response = m_networkReply->readAll();
     m_networkReply->deleteLater();
+
+    parseResponse(response);
 }
 
 void databasehandler::postToServerInventory(QVariantMap product)
@@ -83,7 +119,6 @@ void databasehandler::postToServerInventory(QVariantMap product)
 
     newProductRequest.setHeader(QNetworkRequest::ContentTypeHeader, QString("application/json"));
     m_networkReply = m_networkManager->post(newProductRequest, jsonDoc.toJson());
-    connect(m_networkReply, &QNetworkReply::readyRead, this, &databasehandler::networkReplyReadyRead);
 }
 
 void databasehandler::removeFromServerInventory(QString productId)

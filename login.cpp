@@ -22,11 +22,12 @@ void login::on_pushButton_clicked()
     username = ui->lineEdit_username->text();
     password = ui->lineEdit_password->text();
 
-    if(username == "test" && password == "test"){
+    loginhandler->signUserIn(username, password);
+    if(loginhandler->userSignedIn && r.isHidden()){
         ui->label_error->setText("username and password are correct");
         this->hide();
         w.show();
-    } else {
+    } else{
         ui->label_error->setText("username and password are incorrect");
     }
 }
@@ -34,7 +35,6 @@ void login::on_pushButton_clicked()
 
 void login::on_label_2_linkActivated(const QString &link)
 {
-    this->hide();
     r.show();
 }
 

@@ -14,12 +14,15 @@ class databasehandler : public QObject
 public:
     explicit databasehandler(QObject *parent = nullptr);
     ~databasehandler();
+    bool userSignedIn;
 
     void postToServerInventory(QVariantMap product);
     void removeFromServerInventory(QString productId);
     void pullInventory();
     void setAPIKey(const QString & apiKey);
     void signUserUp(const QString & emailAddress, const QString & password);
+    void signUserIn(const QString & emailAddress, const QString & password);
+
     QJsonObject getJson();
 public slots:
     void networkReplyReadyRead();
@@ -34,11 +37,13 @@ private:
     QString inventoryDatabase;
     QString loginDatabase;
     QString m_apiKey;
+    QString m_idToken;
 
     QJsonObject firebase;
 
     void getFromServerInventory();
     void performPOST(const QString &url, const QJsonDocument &payload);
+    void parseResponse(const QByteArray & response);
 };
 
 #endif // DATABASEHANDLER_H

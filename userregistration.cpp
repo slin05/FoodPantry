@@ -20,6 +20,17 @@ userregistration::~userregistration()
 
 void userregistration::on_pushButton_clicked()
 {
-    registerhandler->signUserUp("ryan@email.com", "password123");
+    QString email = ui->EmailEdit->text();
+    QString password = ui->PasswordEdit->text();
+    if (password == ui->ConfirmEdit->text())
+        {
+            registerhandler->signUserUp(email, password);
+            this->hide();
+        }
+    else
+        {
+            ui->registerLabel->text() = "Password mismatch";
+        }
+
 }
 
